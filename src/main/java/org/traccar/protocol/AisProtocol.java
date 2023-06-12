@@ -34,6 +34,13 @@ public class AisProtocol extends BaseProtocol {
                 pipeline.addLast(new AisProtocolDecoder(AisProtocol.this));
             }
         });
+        addServer(new TrackerServer(config, getName(), true) {
+            @Override
+            protected void addProtocolHandlers(PipelineBuilder pipeline, Config config) {
+                pipeline.addLast(new StringDecoder());
+                pipeline.addLast(new AisProtocolDecoder(AisProtocol.this));
+            }
+        });
     }
 
 }

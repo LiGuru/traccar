@@ -48,6 +48,7 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.StreamingOutput;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -97,7 +98,12 @@ public class ReportResource extends SimpleObjectResource<Report> {
                 }
             };
             return Response.ok(stream)
-                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=report.xlsx").build();
+                    .header(HttpHeaders.CONTENT_DISPOSITION,
+                            "attachment; filename=report-"
+                                    + new SimpleDateFormat("yyyyMMddHHmmss")
+                                    .format(new Date())
+                                    + ".xlsx")
+                    .build();
         }
     }
 

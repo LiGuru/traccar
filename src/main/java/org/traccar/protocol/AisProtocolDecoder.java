@@ -40,7 +40,8 @@ public class AisProtocolDecoder extends BaseProtocolDecoder {
     }
 
     private static final Pattern PATTERN = new PatternBuilder()
-            .text("!AIVDM,")
+            .text("!")
+            .expression("A[BI]VDM,")
             .number("(d+),")                     // count
             .number("(d+),")                     // index
             .number("(d+)?,")                    // id
